@@ -1,3 +1,3 @@
 # My-Javascript-Lab
 
-lab
+lab2
