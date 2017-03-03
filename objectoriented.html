@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js">
+</head>
+<body>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $http.get("objectoriented.html")
+    .then(function(response) {
+        $scope.myWelcome = response.data;
+    });
+});
+</script>
+<p style="overflow: hidden; height: 0; padding: 20px;" id="car">Default. The background color is transparent (underlying content will shine through)</p>
+<script>
+ function spaceShip(move, bgcolor, width){
+ this.move = move;
+ this.width = width;
+ this.bgcolor = bgcolor;
+ this.moveitfunc = function(moveto){ 
+  this.move = moveto;
+ }
+ }
+var moveit = new spaceShip("100px", "#ccc", "40%"); 
+function moveitNow(){
+document.getElementById('car').style.height = moveit.move;
+document.getElementById('car').style.backgroundColor = moveit.bgcolor;
+ document.getElementById('car').style.width = moveit.width;
+}
+function reset(){
+document.getElementById('car').style.height = "1px";
+document.getElementById('car').style.backgroundColor =  "";
+
+}
+</script>
+ <button onClick="moveitNow();">MOVEIT</button>
+ <button onClick="reset();">reset</button>
+ <div ng-app="myApp" ng-controller="myCtrl"> 
+
+<p>Today's welcome message is:</p>
+<h1>{{myWelcome}}</h1>
+
+</div>
+
+
+</body>
+</html>

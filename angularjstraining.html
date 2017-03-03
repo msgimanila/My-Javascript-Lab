@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+ 
+ <style>
+  
+</style>
+</head>
+<body>
+
+<div id="app1" ng-app="myApp" ng-controller="myCtrl"> 
+<p>DASHBOARD MESSAGE:</p>
+<h3>{{dataText}}</h3>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http) {
+    $http.get("angularcontent.json")
+    .then(function(response) {
+        $scope.dataText = response.data.availability;
+		$scope.dataText = "<br>";
+		$scope.dataText = response.data.description;
+    });
+});
+
+</script>
+<div id="app2"  ng-app="myApp2" ng-controller="myCtrl">
+    Name: <input ng-model="firstname">
+	 Name: <input ng-model="lastname">
+    <h1>{{firstname}}</h1><h1>{{lastname}}</h1>
+</div>
+
+<script>
+var app = angular.module('myApp2', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstname = "John";
+    $scope.lastname = "Doe";    
+});
+</script>
+</div>
+
+ 
+
+</body>
+</html>
